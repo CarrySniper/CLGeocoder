@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kA5-ta-Qxh">
+                                <rect key="frame" x="20" y="146" width="280" height="41"/>
+                                <color key="backgroundColor" red="0.2162355836" green="0.031109488139999999" blue="0.52194453529999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="地名转换成经纬度"/>
+                                <connections>
+                                    <action selector="transformationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gdg-ZC-RYj"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入地址名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kES-lg-b1b">
+                                <rect key="frame" x="20" y="20" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="返回纬度" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yv4-61-EG5">
+                                <rect key="frame" x="86" y="96" width="214" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="纬度：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJ5-SM-XTI">
+                                <rect key="frame" x="20" y="96" width="58" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="返回位置信息" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YXh-2y-tw5">
+                                <rect key="frame" x="20" y="195" width="280" height="353"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="经度：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uH-De-rdn">
+                                <rect key="frame" x="20" y="58" width="58" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="返回经度" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CXt-BT-Y2C">
+                                <rect key="frame" x="86" y="58" width="214" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kA5-ta-Qxh" firstAttribute="top" secondItem="cJ5-SM-XTI" secondAttribute="bottom" constant="20" id="0qd-Jn-bdu"/>
+                            <constraint firstItem="CXt-BT-Y2C" firstAttribute="leading" secondItem="1uH-De-rdn" secondAttribute="trailing" constant="8" id="5ZL-Cw-Jvn"/>
+                            <constraint firstItem="YXh-2y-tw5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="PYs-qb-nNN"/>
+                            <constraint firstItem="kES-lg-b1b" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Q4I-YX-b9U"/>
+                            <constraint firstItem="kA5-ta-Qxh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="SMs-Aw-9ua"/>
+                            <constraint firstItem="kA5-ta-Qxh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="awv-it-Z55"/>
+                            <constraint firstItem="yv4-61-EG5" firstAttribute="top" secondItem="CXt-BT-Y2C" secondAttribute="bottom" constant="8" id="eO0-hD-D19"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YXh-2y-tw5" secondAttribute="bottom" constant="20" id="ead-AX-0HR"/>
+                            <constraint firstItem="CXt-BT-Y2C" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="gXF-ng-sb1"/>
+                            <constraint firstItem="kES-lg-b1b" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="h1u-DT-hsc"/>
+                            <constraint firstItem="YXh-2y-tw5" firstAttribute="top" secondItem="kA5-ta-Qxh" secondAttribute="bottom" constant="8" id="kpO-V6-uEg"/>
+                            <constraint firstItem="YXh-2y-tw5" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="m98-lX-TC9"/>
+                            <constraint firstItem="kES-lg-b1b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="pAT-R4-KEt"/>
+                            <constraint firstItem="yv4-61-EG5" firstAttribute="leading" secondItem="cJ5-SM-XTI" secondAttribute="trailing" constant="8" id="scF-Mk-WB1"/>
+                            <constraint firstItem="CXt-BT-Y2C" firstAttribute="top" secondItem="kES-lg-b1b" secondAttribute="bottom" constant="8" id="tct-GZ-Xvb"/>
+                            <constraint firstItem="yv4-61-EG5" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="xQ4-0p-W7h"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressTF" destination="kES-lg-b1b" id="9D5-Nd-EBp"/>
+                        <outlet property="infoTV" destination="YXh-2y-tw5" id="RAX-ez-kUG"/>
+                        <outlet property="latitudeTF" destination="yv4-61-EG5" id="BrF-0h-oVa"/>
+                        <outlet property="longitudeTF" destination="CXt-BT-Y2C" id="7ul-Oh-yVw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162" y="406"/>
+        </scene>
+    </scenes>
+</document>
