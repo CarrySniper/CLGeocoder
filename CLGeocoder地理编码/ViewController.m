@@ -7,12 +7,16 @@
 //
 
 #import "ViewController.h"
+
 #import <CoreLocation/CoreLocation.h>
 
 typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
 
 #define WEAKSELF  typeof(self) __weak weakSelf = self;
 
+/*
+  经纬度获取了有正负。经度 西经为-，东经为+。纬度 南纬为-，北纬为+.
+ */
 
 @interface ViewController ()
 
@@ -33,11 +37,13 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-#pragma mark - 转换事件
+#pragma mark - 编码转换事件
 - (IBAction)transformationAction:(id)sender {
+    [self.view endEditing:YES];
+    
     self.infoTV.text = @"等待编码解析……";
     [self geocodeAddress:_addressTF.text block:^(CLLocationCoordinate2D coordinate) {
-        if (coordinate.latitude != 404.0) {
+        if (coordinate.longitude != 404.0 && coordinate.latitude != 404.0) {
             self.longitudeTF.text = [NSString stringWithFormat:@"%f", coordinate.longitude];
             self.latitudeTF.text = [NSString stringWithFormat:@"%f", coordinate.latitude];
         }else{
@@ -68,7 +74,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
         if (error != nil ||  placemarks.count == 0) {
             //如果有错误信息，或者是数组中获取的地名元素数量为0
             //说明没有找到
-            NSLog(@"没有找到");
+            NSLog(@"没有找到 %@", error);
             CLLocationCoordinate2D coordinate = {404, 404};
             if (block) dispatch_async(dispatch_get_main_queue(), ^{
                 block(coordinate);
@@ -89,7 +95,7 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
             });
             
             //打印查看找到的所有的位置信息
-            weakSelf.infoTV.text = @"符合条件地点列表：\n";
+            weakSelf.infoTV.text = [NSString stringWithFormat:@"符合条件地点列表（%li个）：\n", placemarks.count];
             for (CLPlacemark *placemark in placemarks) {
                 NSString *string = [NSString stringWithFormat:@"%@", [placemark addressDictionary]];
                 
@@ -98,27 +104,9 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
         }
     }];
     
-    
-    
-    /*
-     经度：23.133163
-     纬度：113.332359
-     
-     {
-     City = "广州市";
-     Country = "中国";
-     CountryCode = CN;
-     FormattedAddressLines =     (
-     "中国广东省广州市天河区"
-     );
-     Name = "广东省广州市天河区石牌桥(公交站)";
-     State = "广东省";
-     SubLocality = "天河区";
-     }
-     */
 }
 
-//unicode编码以\u开头
+#pragma mark - unicode编码以\u开头 把Unicode转为中文
 - (NSString *)replaceUnicode:(NSString *)unicodeStr
 {
     NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
@@ -131,6 +119,14 @@ typedef void (^Coordinate2DBlock)(CLLocationCoordinate2D coordinate);
                                                            errorDescription:NULL];
     return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
 }
+
+#pragma mark - 监听点击事件，结束所有编辑状态。
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
